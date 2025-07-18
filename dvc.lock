@@ -10,15 +10,15 @@ stages:
     outs:
     - path: data/raw/iris.csv
       hash: md5
-      md5: 631c13a3a4f699f5b34d764cff43a7a8
-      size: 8249
+      md5: 9b81a5b2beab90b5e381dfb33627d536
+      size: 4189
   preprocess:
     cmd: python src/preprocess.py
     deps:
     - path: data/raw/iris.csv
       hash: md5
-      md5: 631c13a3a4f699f5b34d764cff43a7a8
-      size: 8249
+      md5: 9b81a5b2beab90b5e381dfb33627d536
+      size: 4189
     - path: src/preprocess.py
       hash: md5
       md5: fb5a3c961efb3a49ef88d0848d09ece3
