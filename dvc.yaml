@@ -1,0 +1,32 @@
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+      - src/prepare_data.py
+    outs:
+      - data/raw/iris.csv
+      
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/iris.csv
+    outs:
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+      - data/processed/scaler.pkl
+      
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+    outs:
+      - models/iris_model.pkl
+    metrics:
+      - models/metrics.json
