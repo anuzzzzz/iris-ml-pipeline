@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        # Install DVC and dvc-objects with compatible versions
+        pip install "dvc[gs]==3.50.1" dvc-objects==3.0.3
+        # Install the rest of the requirements
         pip install -r requirements.txt
 
     - name: Set up DVC and pull data
