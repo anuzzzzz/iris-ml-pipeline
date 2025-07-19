@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
 
@@ -29,7 +29,7 @@ jobs:
       run: |
         pip install dvc[gs]
         echo "$GOOGLE_APPLICATION_CREDENTIALS" > gcloud-creds.json
-        dvc remote modify gcs-storage --local gdrive_service_account_json_file_path gcloud-creds.json
+        export GOOGLE_APPLICATION_CREDENTIALS=gcloud-creds.json
         dvc pull
 
     - name: Run tests
