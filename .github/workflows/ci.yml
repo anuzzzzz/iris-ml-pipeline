@@ -12,25 +12,34 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
+
+    - name: Set up DVC and pull data
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      run: |
+        pip install dvc[gs]
+        echo "$GOOGLE_APPLICATION_CREDENTIALS" > gcloud-creds.json
+        dvc remote modify gcs-storage --local gdrive_service_account_json_file_path gcloud-creds.json
+        dvc pull
+
     - name: Run tests
       run: |
         python -m pytest tests/ -v --tb=short
-    
+
     - name: Run data validation
       run: |
         python tests/test_data_validation.py
-    
+
     - name: Generate CML report
       if: github.event_name == 'pull_request'
       run: |
@@ -41,7 +50,7 @@ jobs:
         if [ -f "models/metrics_mlflow.json" ]; then
           cat models/metrics_mlflow.json >> report.md
         fi
-    
+
     - name: Create CML comment
       if: github.event_name == 'pull_request'
       uses: actions/github-script@v6
