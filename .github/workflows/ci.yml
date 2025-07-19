@@ -32,6 +32,11 @@ jobs:
         export GOOGLE_APPLICATION_CREDENTIALS=gcloud-creds.json
         dvc pull
 
+    - name: Duplicate MLflow outputs for testing compatibility
+      run: |
+        cp models/iris_model_mlflow.pkl models/iris_model.pkl
+        cp models/metrics_mlflow.json models/metrics.json
+
     - name: Run tests
       run: |
         python -m pytest tests/ -v --tb=short
