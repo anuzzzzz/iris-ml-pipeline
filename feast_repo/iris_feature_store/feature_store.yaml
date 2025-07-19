@@ -1,0 +1,10 @@
+project: iris_project
+registry: data/registry.db
+provider: gcp
+offline_store:
+  type: bigquery
+  dataset: iris_feature_store
+online_store:
+  type: redis
+  connection_string: localhost:6379
+repo_path: feature_repo

@@ -1,0 +1,4 @@
+[core]
+    remote = gcs-storage
+['remote "gcs-storage"']
+    url = gs://iris-ml-pipeline-dvc-elaborate-chess-461609-j9/dvc-store

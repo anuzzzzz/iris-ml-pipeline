@@ -5,7 +5,15 @@ stages:
       - src/prepare_data.py
     outs:
       - data/raw/iris.csv
-      
+
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+      - src/feature_engineering.py
+      - data/raw/iris.csv
+    outs:
+      - data/features/iris_features.csv
+
   preprocess:
     cmd: python src/preprocess.py
     deps:
@@ -17,16 +25,30 @@ stages:
       - data/processed/y_train.csv
       - data/processed/y_test.csv
       - data/processed/scaler.pkl
-      
+
   train:
-    cmd: python src/train.py
+    cmd: python src/train_mlflow.py
     deps:
-      - src/train.py
+      - src/train_mlflow.py
       - data/processed/X_train.csv
       - data/processed/X_test.csv
       - data/processed/y_train.csv
       - data/processed/y_test.csv
     outs:
-      - models/iris_model.pkl
+      - models/iris_model_mlflow.pkl
     metrics:
-      - models/metrics.json
+      - models/metrics_mlflow.json
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/iris_model_mlflow.pkl
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+    outs:
+      - results/confusion_matrix.png
+      - results/feature_importance.png
+    metrics:
+      - results/evaluation_report.json
+

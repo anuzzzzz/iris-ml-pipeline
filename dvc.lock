@@ -45,7 +45,7 @@ stages:
       md5: 917bbcbc5c559e8e95300dd8532a0445
       size: 247
   train:
-    cmd: python src/train.py
+    cmd: python src/train_mlflow.py
     deps:
     - path: data/processed/X_test.csv
       hash: md5
@@ -63,16 +63,64 @@ stages:
       hash: md5
       md5: 917bbcbc5c559e8e95300dd8532a0445
       size: 247
-    - path: src/train.py
+    - path: src/train_mlflow.py
       hash: md5
-      md5: ebfbd0331d855d7dc77d6ebe09aff9ea
-      size: 1550
+      md5: aceeeb9ce355fbe96701ac4ac8630aea
+      size: 3458
     outs:
-    - path: models/iris_model.pkl
+    - path: models/iris_model_mlflow.pkl
       hash: md5
-      md5: ebb90c76cbe0be56689e6ba88586cd53
-      size: 163489
-    - path: models/metrics.json
+      md5: 73034b89efd3425421822b06e3935478
+      size: 62481
+    - path: models/metrics_mlflow.json
       hash: md5
-      md5: a77b17d366b8c8bc2427c19e1de3e568
-      size: 119
+      md5: 1338ad6b2b1e802bbd6e3a481022dd06
+      size: 234
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 9b81a5b2beab90b5e381dfb33627d536
+      size: 4189
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: aa657a5f7848fed11cf3ad8f2c166136
+      size: 2933
+    outs:
+    - path: data/features/iris_features.csv
+      hash: md5
+      md5: d2b6c48e8e2379f9cb5e9419d431f24c
+      size: 17121
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 6c5d4cb4200afda664894ed8de47ff6b
+      size: 2412
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 5cdef6a28137075d0f8145396b9644d8
+      size: 67
+    - path: models/iris_model_mlflow.pkl
+      hash: md5
+      md5: 73034b89efd3425421822b06e3935478
+      size: 62481
+    - path: src/evaluate.py
+      hash: md5
+      md5: ebb96d13e8261ba3f79f7f246186dfb0
+      size: 2511
+    outs:
+    - path: results/confusion_matrix.png
+      hash: md5
+      md5: b53cb8eb1e1b509a3ca6c9b8dd4d2125
+      size: 15702
+    - path: results/evaluation_report.json
+      hash: md5
+      md5: a541e6ccefc0f5798860561f443b33e1
+      size: 284
+    - path: results/feature_importance.png
+      hash: md5
+      md5: 8f61787836326a2f859aa96335e86143
+      size: 25556

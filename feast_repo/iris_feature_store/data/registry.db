@@ -1,0 +1,28 @@
+
+^
+>
+	entity_idIris sample identifier"	entity_idJiris_project
+…ÔîÃˆ®£°¦ÖîÃ˜†Ö½
+B
+#
+__dummy"
+__dummy_idJiris_project
+ÍÑîÃ°’ïp¦ÖîÃ˜Çê½1"$446dc312-0b51-4a91-b487-a4bfa4241ae4*¦ÖîÃÀ¬«Á2œ
+ü
+iris_featuresiris_project	entity_id"
+sepal_length"
+sepal_width"
+petal_length"
+petal_width"
+sepal_ratio"
+petal_ratio"
+
+total_area*
+teamml_engineering2€ç„:©event_timestamp*created_timestampb"
+ iris_feature_store.iris_featuresŠ9feast.infra.offline_stores.bigquery_source.BigQuerySource¢ iris_feature_store.iris_features@b
+	entity_id
+ÍÑîÃàÓÔp…ÔîÃ¨‰“¯b¸event_timestamp*created_timestampb"
+ iris_feature_store.iris_featuresŠ9feast.infra.offline_stores.bigquery_source.BigQuerySource¢ iris_feature_store.iris_featuresªiris_projectŠ.
+
+iris_project
+ÌÑîÃø¸Ñû¦ÖîÃ¸Ç¸â
