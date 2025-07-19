@@ -27,7 +27,6 @@ jobs:
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       run: |
-        pip install dvc[gs]
         echo "$GOOGLE_APPLICATION_CREDENTIALS" > gcloud-creds.json
         export GOOGLE_APPLICATION_CREDENTIALS=gcloud-creds.json
         dvc pull
