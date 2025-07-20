@@ -24,6 +24,9 @@ jobs:
         pip install "dvc[gs]==3.50.1"
         pip install -r requirements.txt
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
     - name: Set up DVC and pull data
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
