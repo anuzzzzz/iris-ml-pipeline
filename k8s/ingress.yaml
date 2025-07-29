@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: iris-api-ingress
+  namespace: iris-api
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "iris-api-ip"
+    networking.gke.io/managed-certificates: "iris-api-ssl-cert"
+spec:
+  rules:
+  - host: iris-api.your-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: iris-api-service
+            port:
+              number: 80
