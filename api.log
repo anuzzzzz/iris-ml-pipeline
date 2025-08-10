@@ -1,0 +1,6 @@
+INFO:__main__:Model loaded from models/iris_model.pkl
+INFO:__main__:Scaler loaded from data/processed/scaler.pkl
+ * Serving Flask app 'api'
+ * Debug mode: off
+Address already in use
+Port 8080 is in use by another program. Either identify and stop that program, or start the server with a different port.
